@@ -51,6 +51,8 @@ This will install the extension in the `_extensions` subdirectory. If you’re u
 
 ## Usage
 
+**⭐✨⭐ [See this page for full examples!](https://andrewheiss.github.io/language-name/example.html) GitHub doesn't allow for custom CSS, so nothing will be visible there. ⭐✨⭐**
+
 Enable the filter by including it in the YAML front matter of a document:
 
 ```{.yaml}

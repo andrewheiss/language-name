@@ -4,7 +4,19 @@ project:
 
 website:
   title: "Quarto language names extension"
+
+  repo-url: "https://github.com/andrewheiss/language-name"
+
   navbar:
-    background: primary
+    background: "#0074D9"
     left:
       - example.qmd
+
+    right:
+      - icon: github
+        aria-label: github
+        href: https://github.com/andrewheiss/language-name
+
+format:
+  html:
+    theme: zephyr
