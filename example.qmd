@@ -1,0 +1,276 @@
+---
+title: "Examples"
+toc: true
+
+filters:
+  - language-name
+
+language-name:
+  show-all: true
+---
+
+## Enabling the extension
+
+Enable the filter by including it in the YAML front matter:
+
+```{.yaml language-title="Quarto YAML front matter"}
+---
+title: Your title
+filters:
+  - language-name
+---
+```
+
+## Control when language names are visible
+
+### Document-wide
+
+By default, the language name will be added to all language-specific blocks in the document. You can disable this with the `show-all` option in the YAML front matter:
+
+```{.yaml language-title="Quarto YAML front matter"}
+---
+title: Your title
+filters:
+  - language-name
+language-name:
+  show-all: false
+---
+```
+
+### In specific blocks
+
+You can also enable or disable language names on a block-by-block basis with the `show-language` attribute, which can be either `true` or `false`. For instance:
+
+::: {.panel-tabset}
+#### Source
+
+````{.default show-language="false"}
+```{.r show-language="false"}
+# No language name
+x <- 1 + 1
+```
+````
+
+#### Output
+
+```{.r show-language="false"}
+# No language name
+x <- 1 + 1
+```
+:::
+
+::: {.panel-tabset}
+#### Source
+
+````{.default show-language="false"}
+```{.r show-language="true"}
+# Language name!
+x <- 1 + 1
+```
+````
+
+#### Output
+
+```{.r show-language="true"}
+# Language name!
+x <- 1 + 1
+```
+
+:::
+
+
+## Control language name
+
+By default, the language will be converted to sentence case (i.e. first letter capitalized). This works for many languages, like R and Python. For example, this Python chunk renders with a title of "Python":
+
+::: {.panel-tabset}
+#### Source
+
+````{.default show-language="false"}
+```{.python}
+x = 1 + 1
+```
+````
+
+#### Output
+
+```{.python}
+x = 1 + 1
+```
+:::
+
+For languages like YAML, though, the name will render as "Yaml":
+
+```{.yaml}
+items:
+  - thing 1
+  - thing 2
+```
+
+You can control the text for the language name with the `language-title` option:
+
+::: {.panel-tabset}
+#### Source
+
+````{.default show-language="false"}
+```{.yaml language-title="YAML"}
+items:
+  - thing 1
+  - thing 2
+```
+````
+
+#### Output
+
+```{.yaml language-title="YAML"}
+items:
+  - thing 1
+  - thing 2
+```
+:::
+
+
+You can use whatever you want in the `language-title` option, like adding extra language details:
+
+::: {.panel-tabset}
+#### Output
+
+```{.python language-title="Python (both 2 and 3)"}
+x = 1 + 1
+```
+
+```{.python language-title="Python 2"}
+print x
+```
+
+```{.python language-title="Python 3"}
+print(x)
+```
+
+#### Source
+
+````{.default show-language="false"}
+```{.python language-title="Python (both 2 and 3)"}
+x = 1 + 1
+```
+
+```{.python language-title="Python 2"}
+print x
+```
+
+```{.python language-title="Python 3"}
+print(x)
+```
+````
+:::
+
+Here are some other examples:
+
+::: {.panel-tabset}
+#### Output
+
+```{.bash language-title="Terminal (sh)"}
+quarto preview document.qmd --no-browser
+```
+
+#### Source
+
+````{.default show-language="false"}
+```{.bash language-title="Terminal (sh)"}
+quarto preview document.qmd --no-browser
+```
+````
+:::
+
+::: {.panel-tabset}
+#### Output
+
+```{.stata language-title="Stata ($$$)"}
+reg y x, robust
+```
+
+#### Source
+
+````{.default show-language="false"}
+```{.stata language-title="Stata ($$$)"}
+reg y x, robust
+```
+````
+:::
+
+## Computational output
+
+This also works with computational cells:
+
+```{r}
+mean(1:5)
+```
+
+You can control options within computational cells as well using inline attributes. Here's a custom language name:
+
+::: {.panel-tabset}
+#### Output
+
+```{r}
+#| language-title: "R (the best)"
+
+mean(1:5)
+```
+
+#### Source
+
+````{.default show-language="false"}
+```{{r}}
+#| language-title: "R (the best)"
+
+mean(1:5)
+```
+````
+:::
+
+
+And here's a chunk with no language name:
+
+::: {.panel-tabset}
+#### Output
+
+```{r}
+#| show-language: false
+
+mean(1:5)
+```
+
+#### Source
+
+````{.default show-language="false"}
+```{{r}}
+#| show-language: false
+
+mean(1:5)
+```
+````
+:::
+
+It also works when using [the `filename` attribute](https://quarto.org/docs/output-formats/html-code.html#code-filename):
+
+::: {.panel-tabset}
+#### Output
+
+```{r}
+#| language-title: "R (the best)"
+#| filename: "analysis.R"
+
+mean(1:5)
+```
+
+#### Source
+
+````{.default show-language="false"}
+```{{r}}
+#| language-title: "R (the best)"
+#| filename: "analysis.R"
+
+mean(1:5)
+```
+````
+:::

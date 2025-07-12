@@ -1,0 +1,13 @@
+---
+format: 
+  gfm:
+    toc: true
+    wrap: none
+    include-before-body: 
+      text: |
+        # Quarto language names
+---
+
+<!-- README.md is generated from _README.qmd. Please edit that file -->
+
+{{< include _README.qmd >}}

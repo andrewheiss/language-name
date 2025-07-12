@@ -1,0 +1,10 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Quarto language names extension"
+  navbar:
+    background: primary
+    left:
+      - example.qmd

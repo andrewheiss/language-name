@@ -1,0 +1,9 @@
+---
+title: Quarto language name
+toc: true
+resources:
+  - "img/chunks-with-language.png"
+  - "img/chunks-with-custom-language.png"
+---
+
+{{< include _README.qmd >}}
