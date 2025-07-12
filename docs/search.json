@@ -4,14 +4,21 @@
     "href": "example.html",
     "title": "Examples",
     "section": "",
-    "text": "Enable the filter by including it in the YAML front matter:\n\n\n---\ntitle: Your title\nfilters:\n  - language-name\n---"
+    "text": "To install this extension in your current directory (or into the Quarto project that you’re currently working in), use the following terminal command:\n\n\nquarto add andrewheiss/language-name\n\nThis will install the extension in the _extensions subdirectory. If you’re using version control, you will want to check in this directory."
+  },
+  {
+    "objectID": "example.html#installation",
+    "href": "example.html#installation",
+    "title": "Examples",
+    "section": "",
+    "text": "To install this extension in your current directory (or into the Quarto project that you’re currently working in), use the following terminal command:\n\n\nquarto add andrewheiss/language-name\n\nThis will install the extension in the _extensions subdirectory. If you’re using version control, you will want to check in this directory."
   },
   {
     "objectID": "example.html#enabling-the-extension",
     "href": "example.html#enabling-the-extension",
     "title": "Examples",
-    "section": "",
-    "text": "Enable the filter by including it in the YAML front matter:\n\n\n---\ntitle: Your title\nfilters:\n  - language-name\n---"
+    "section": "Enabling the extension",
+    "text": "Enabling the extension\nEnable the filter by including it in the YAML front matter:\n\n\n---\ntitle: Your title\nfilters:\n  - language-name\n---"
   },
   {
     "objectID": "example.html#control-when-language-names-are-visible",
@@ -53,7 +60,7 @@
     "href": "index.html#installation",
     "title": "Quarto language name",
     "section": "Installation",
-    "text": "Installation\nTo install this extension in your current directory (or into the Quarto project that you’re currently working in), use the following command:\nquarto add andrewheiss/language-name\nThis will install the extension in the _extensions subdirectory. If you’re using version control, you will want to check in this directory."
+    "text": "Installation\nTo install this extension in your current directory (or into the Quarto project that you’re currently working in), use the following terminal command:\nquarto add andrewheiss/language-name\nThis will install the extension in the _extensions subdirectory. If you’re using version control, you will want to check in this directory."
   },
   {
     "objectID": "index.html#usage",

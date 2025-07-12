@@ -9,6 +9,17 @@ language-name:
   show-all: true
 ---
 
+## Installation
+
+To install this extension in your current directory (or into the Quarto project that you're currently working in), use the following terminal command:
+
+```{.bash language-title="Terminal (sh)"}
+quarto add andrewheiss/language-name
+```
+
+This will install the extension in the `_extensions` subdirectory. If you’re using version control, you will want to check in this directory.
+
+
 ## Enabling the extension
 
 Enable the filter by including it in the YAML front matter:

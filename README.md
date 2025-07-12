@@ -46,7 +46,7 @@ You can customize the language too, like specifying version names or flavors of 
 
 ## Installation
 
-To install this extension in your current directory (or into the Quarto project that you’re currently working in), use the following command:
+To install this extension in your current directory (or into the Quarto project that you’re currently working in), use the following terminal command:
 
 ``` sh
 quarto add andrewheiss/language-name
