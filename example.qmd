@@ -141,12 +141,12 @@ items:
 :::
 
 
-You can use whatever you want in the `language-title` option, like adding extra language details:
+You can use whatever you want in the `language-title` option, like adding emojis or extra language details:
 
 ::: {.panel-tabset}
 #### Output
 
-```{.python language-title="Python (both 2 and 3)"}
+```{.python language-title="🐍 Python (both 2 and 3)"}
 x = 1 + 1
 ```
 
@@ -161,7 +161,7 @@ print(x)
 #### Source
 
 ````{.default show-language="false"}
-```{.python language-title="Python (both 2 and 3)"}
+```{.python language-title="🐍 Python (both 2 and 3)"}
 x = 1 + 1
 ```
 
@@ -285,3 +285,52 @@ mean(1:5)
 ```
 ````
 :::
+
+## Adaptive color
+
+The color of the language title and little border line should automatically adapt to whatever highlighting color scheme you're using. It's set to be at 80% opacity of the CSS variable `--quarto-hl-co-color`, which is used for code comments and code annotations and the copy button in code output.
+
+Try toggling from dark to light mode to check: <a class="btn btn-primary btn-sm" href="#" role="button" onclick="window.quartoToggleColorScheme(); return false;">Switch between light/dark mode</a>
+
+```{.r language-title="R (the same color as the comments ↓)"}
+# The language name should be the same as this color
+x <- mean(1:5)
+```
+
+## Custom colors
+
+If you want to define your own colors, you can either (1) edit `language-name.css` in the extension folder directly or (2) you can add your own custom CSS in a separate file or injected through the `include-in-header` option in the YAML front matter.
+
+The relevant CSS settings are at the end:
+
+```{.css language-title="CSS"}
+.codeblock-with-label pre::before {
+  /* Other stuff */
+
+  /* Color stuff. This uses a semi transparent version of Quarto's comment color 
+  for syntax highlighting (--quarto-hl-co-color) */
+  opacity: 0.8;
+  color: var(--quarto-hl-co-color, #5E5E5E);
+  border-bottom-color: var(--quarto-hl-co-color, #5E5E5E);
+}
+```
+
+So you could, for instance, do this in a document:
+
+```{.yaml language-title="Quarto YAML front matter"}
+---
+title: Your title
+filters:
+  - language-name
+format:
+  html:
+    include-in-header:
+      - text: |
+          <style type="text/css">
+          .codeblock-with-label pre::before {
+            color: red;
+            border-bottom-color: green;
+          }
+          </style>
+---
+```

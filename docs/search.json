@@ -32,7 +32,7 @@
     "href": "example.html#control-language-name",
     "title": "Examples",
     "section": "Control language name",
-    "text": "Control language name\nBy default, the language will be converted to sentence case (i.e. first letter capitalized). This works for many languages, like R and Python. For example, this Python chunk renders with a title of “Python”:\n\nSourceOutput\n\n\n```{.python}\nx = 1 + 1\n```\n\n\n\n\nx = 1 + 1\n\n\n\n\nFor languages like YAML, though, the name will render as “Yaml”:\n\n\nitems:\n  - thing 1\n  - thing 2\n\nYou can control the text for the language name with the language-title option:\n\nSourceOutput\n\n\n```{.yaml language-title=\"YAML\"}\nitems:\n  - thing 1\n  - thing 2\n```\n\n\n\n\nitems:\n  - thing 1\n  - thing 2\n\n\n\n\nYou can use whatever you want in the language-title option, like adding extra language details:\n\nOutputSource\n\n\n\n\nx = 1 + 1\n\n\n\nprint x\n\n\n\nprint(x)\n\n\n\n```{.python language-title=\"Python (both 2 and 3)\"}\nx = 1 + 1\n```\n\n```{.python language-title=\"Python 2\"}\nprint x\n```\n\n```{.python language-title=\"Python 3\"}\nprint(x)\n```\n\n\n\nHere are some other examples:\n\nOutputSource\n\n\n\n\nquarto preview document.qmd --no-browser\n\n\n\n```{.bash language-title=\"Terminal (sh)\"}\nquarto preview document.qmd --no-browser\n```\n\n\n\n\nOutputSource\n\n\n\n\nreg y x, robust\n\n\n\n```{.stata language-title=\"Stata ($$$)\"}\nreg y x, robust\n```"
+    "text": "Control language name\nBy default, the language will be converted to sentence case (i.e. first letter capitalized). This works for many languages, like R and Python. For example, this Python chunk renders with a title of “Python”:\n\nSourceOutput\n\n\n```{.python}\nx = 1 + 1\n```\n\n\n\n\nx = 1 + 1\n\n\n\n\nFor languages like YAML, though, the name will render as “Yaml”:\n\n\nitems:\n  - thing 1\n  - thing 2\n\nYou can control the text for the language name with the language-title option:\n\nSourceOutput\n\n\n```{.yaml language-title=\"YAML\"}\nitems:\n  - thing 1\n  - thing 2\n```\n\n\n\n\nitems:\n  - thing 1\n  - thing 2\n\n\n\n\nYou can use whatever you want in the language-title option, like adding emojis or extra language details:\n\nOutputSource\n\n\n\n\nx = 1 + 1\n\n\n\nprint x\n\n\n\nprint(x)\n\n\n\n```{.python language-title=\"🐍 Python (both 2 and 3)\"}\nx = 1 + 1\n```\n\n```{.python language-title=\"Python 2\"}\nprint x\n```\n\n```{.python language-title=\"Python 3\"}\nprint(x)\n```\n\n\n\nHere are some other examples:\n\nOutputSource\n\n\n\n\nquarto preview document.qmd --no-browser\n\n\n\n```{.bash language-title=\"Terminal (sh)\"}\nquarto preview document.qmd --no-browser\n```\n\n\n\n\nOutputSource\n\n\n\n\nreg y x, robust\n\n\n\n```{.stata language-title=\"Stata ($$$)\"}\nreg y x, robust\n```"
   },
   {
     "objectID": "example.html#computational-output",
@@ -40,6 +40,20 @@
     "title": "Examples",
     "section": "Computational output",
     "text": "Computational output\nThis also works with computational cells:\n\n\n\nmean(1:5)\n\n\n[1] 3\n\n\nYou can control options within computational cells as well using inline attributes. Here’s a custom language name:\n\nOutputSource\n\n\n\n\n\nmean(1:5)\n\n\n[1] 3\n\n\n\n\n```{r}\n#| language-title: \"R (the best)\"\n\nmean(1:5)\n```\n\n\n\nAnd here’s a chunk with no language name:\n\nOutputSource\n\n\n\nmean(1:5)\n\n[1] 3\n\n\n\n\n```{r}\n#| show-language: false\n\nmean(1:5)\n```\n\n\n\nIt also works when using the filename attribute:\n\nOutputSource\n\n\n\n\n\n\n\nanalysis.R\n\nmean(1:5)\n\n\n\n[1] 3\n\n\n\n\n```{r}\n#| language-title: \"R (the best)\"\n#| filename: \"analysis.R\"\n\nmean(1:5)\n```"
+  },
+  {
+    "objectID": "example.html#adaptive-color",
+    "href": "example.html#adaptive-color",
+    "title": "Examples",
+    "section": "Adaptive color",
+    "text": "Adaptive color\nThe color of the language title and little border line should automatically adapt to whatever highlighting color scheme you’re using. It’s set to be at 80% opacity of the CSS variable --quarto-hl-co-color, which is used for code comments and code annotations and the copy button in code output.\nTry toggling from dark to light mode to check: Switch between light/dark mode\n\n\n# The language name should be the same as this color\nx &lt;- mean(1:5)"
+  },
+  {
+    "objectID": "example.html#custom-colors",
+    "href": "example.html#custom-colors",
+    "title": "Examples",
+    "section": "Custom colors",
+    "text": "Custom colors\nIf you want to define your own colors, you can either (1) edit language-name.css in the extension folder directly or (2) you can add your own custom CSS in a separate file or injected through the include-in-header option in the YAML front matter.\nThe relevant CSS settings are at the end:\n\n\n.codeblock-with-label pre::before {\n  /* Other stuff */\n\n  /* Color stuff. This uses a semi transparent version of Quarto's comment color \n  for syntax highlighting (--quarto-hl-co-color) */\n  opacity: 0.8;\n  color: var(--quarto-hl-co-color, #5E5E5E);\n  border-bottom-color: var(--quarto-hl-co-color, #5E5E5E);\n}\n\nSo you could, for instance, do this in a document:\n\n\n---\ntitle: Your title\nfilters:\n  - language-name\nformat:\n  html:\n    include-in-header:\n      - text: |\n          &lt;style type=\"text/css\"&gt;\n          .codeblock-with-label pre::before {\n            color: red;\n            border-bottom-color: green;\n          }\n          &lt;/style&gt;\n---"
   },
   {
     "objectID": "index.html",
@@ -74,6 +88,6 @@
     "href": "index.html#todo-some-day",
     "title": "Quarto language name",
     "section": "TODO some day!",
-    "text": "TODO some day!\n\nMake it easier to configure the custom CSS for the language labels.\nRight now this only works with HTML output. It would be neat if it worked in other formats (PDF, Typst, Word lol) like Quarto’s native code filename option or the icons in callout blocks.\nRight now you have to set a custom title for each chunk that uses it. If your whole document only uses R and Observable, you have to add language-title=\"Observable JS\" to each chunk yourself. It would be cool to have more global custom title settings that you could change up in the document YAML."
+    "text": "TODO some day!\n\nRight now this only works with HTML output. It would be neat if it worked in other formats (PDF, Typst, Word lol) like Quarto’s native code filename option or the icons in callout blocks.\nRight now you have to set a custom title for each chunk that uses it. If your whole document only uses R and Observable, you have to add language-title=\"Observable JS\" to each chunk yourself. It would be cool to have more global custom title settings that you could change up in the document YAML."
   }
 ]

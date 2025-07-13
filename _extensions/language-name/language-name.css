@@ -4,8 +4,13 @@
   text-align: left;
   font-size: 0.8em;
   margin-bottom: 7px;
-  border-bottom: rgba(219,219,219,.8) 1px solid;
+  border-bottom: 1px solid;
   padding-left: 4.25px;
   padding-bottom: 5px;
-  color: #aaaaaa;
+
+  /* Color stuff. This uses a semi transparent version of Quarto's comment color 
+  for syntax highlighting (--quarto-hl-co-color) */
+  opacity: 0.8;
+  color: var(--quarto-hl-co-color, #5E5E5E);
+  border-bottom-color: var(--quarto-hl-co-color, #5E5E5E);
 }

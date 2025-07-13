@@ -1,11 +1,13 @@
 --[[
-language-name.lua
-Quarto filter to add language labels to code blocks.
+Quarto filter to add language labels to code blocks!
 Adds a label above each code block indicating its language, with optional customization with YAML metadata.
 Supports both computational and non-computational code blocks! (this was tricky!)
+
+The non-computational code blocks were tricky because Quarto parses those options earlier(?) and they're not available to this filter. The codecelloptions extension (https://github.com/coatless-quarto/codecelloptions) allows users to parse chunk options, and even is available as an embedded extension, but only with *format* extensions, not filters, so it doesn't work here.
+
+So instead, with the help of Claude, and while suffering with a fever of 101ºF/38ºC, I cobbled together a gross method for getting custom options out of computational cells (see below starting with the comment "HOLY CRAP")
 ]]
 
--- Store metadata at the module level
 local document_metadata = { language_name = {} }
 
 
@@ -144,9 +146,11 @@ function CodeBlock(block)
     end
 
     -- Set the content as the language name via inline CSS
+    -- Handle Unicode characters properly by escaping quotes and wrapping in quotes
+    local escaped_label = label:gsub('"', '\\"'):gsub("'", "\\'")
     local custom_css = string.format(
-      '<style>.codeblock-with-label pre.%s::before { content: %q; }</style>',
-      unique_class, label
+      '<style>.codeblock-with-label pre.%s::before { content: "%s"; }</style>',
+      unique_class, escaped_label
     )
 
     return pandoc.Div(
@@ -162,7 +166,7 @@ function CodeBlock(block)
 end
 
 
--- HOLY CRAP this is janky but it works
+-- HOLY CRAP this computational cell stuff is ***janky*** but it works
 function Div(div)
   -- Handle computational cells
   if is_cell(div) then
@@ -205,9 +209,11 @@ function Div(div)
               end
 
               -- Set the content as the language name via inline CSS
+              -- Handle Unicode characters properly by escaping quotes and wrapping in quotes
+              local escaped_label = label:gsub('"', '\\"'):gsub("'", "\\'")
               local custom_css = string.format(
-                '<style>.codeblock-with-label pre.%s::before { content: %q; }</style>',
-                unique_class, label
+                '<style>.codeblock-with-label pre.%s::before { content: "%s"; }</style>',
+                unique_class, escaped_label
               )
 
               -- Replace the code block with a div containing the CSS and the code block

@@ -8,8 +8,10 @@ website:
   repo-url: "https://github.com/andrewheiss/language-name"
 
   navbar:
-    background: "#0074D9"
+    background: "primary"
     left:
+      - text: "README"
+        href: index.qmd
       - example.qmd
 
     right:
@@ -19,4 +21,6 @@ website:
 
 format:
   html:
-    theme: zephyr
+    theme:
+      light: cosmo
+      dark: solar

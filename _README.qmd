@@ -111,8 +111,6 @@ mean(1:5)
 
 ## TODO some day!
 
-- Make it easier to configure the custom CSS for the language labels.
-
 - Right now this only works with HTML output. It would be neat if it worked in other formats (PDF, Typst, Word lol) like Quarto's native [code filename option](https://quarto.org/docs/output-formats/html-code.html#code-filename) or the [icons in callout blocks](https://quarto.org/docs/authoring/callouts.html).
 
 - Right now you have to set a custom title for each chunk that uses it. If your whole document only uses R and Observable, you have to add `language-title="Observable JS"` to each chunk yourself. It would be cool to have more global custom title settings that you could change up in the document YAML.
